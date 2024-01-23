@@ -8,7 +8,7 @@ The impact of photometric redshift errors can only be included when using the "S
 
 zS=np.arange(0.4,1.8,0.001) ; dndzS=(zS/0.6)**-0.5 
 pars.SourceWindows = [ SplinedSourceWindow(bias=1.,source_type='arf',dlog10Ndm=0.0, z=zS, \
-                        W=dndzS*np.exp(-0.5*(zS-1.)**2/0.01**2), bias_z=np.sqrt(1+zS), sigma_Errz=0.01], i_Lorentz=0 )
+                        W=dndzS\*np.exp(-0.5*(zS-1.)\*\*2/0.01\*\*2), bias_z=np.sqrt(1+zS), sigma_Errz=0.01], i_Lorentz=0 )
 
 If no explicit input is given for sigma_Errz and i_Lorentz, then the values of sigma_Errz=1e-5 and i_Lorentz=0 (Gaussian case) are taken as default values.
 
