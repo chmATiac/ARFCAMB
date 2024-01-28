@@ -311,9 +311,9 @@
         zWtmp(i1)=s2z/s1
     enddo
     z_mean=SUM(z*Wtmp) / SUM(Wtmp)
-    zWtmp=(zWtmp-z_mean*Wtmp) / SUM(Wtmp)
+    zWtmp=(zWtmp-z_mean*Wtmp) !/ SUM(Wtmp)
     this%z_mean=z_mean 
-    Wtmp=Wtmp/SUM(Wtmp)
+    Wtmp=Wtmp!/SUM(Wtmp)
     if (n>0) then
         allocate(this%zWindow)
         call this%zWindow%Init(z,zWtmp)

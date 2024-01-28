@@ -1637,7 +1637,7 @@
     real(dl) Tspin, Trad, rho_fac, window, tau_eps
     integer transfer_ix(State%CP%Transfer%PK_num_redshifts)
     integer RW_i, j2
-    real(dl) Tb21cm, winamp, z, background_boost
+    real(dl) Tb21cm, winamp, z, background_boost, zwinamp ! ARF
     character(len=:), allocatable :: outstr
     real(dl), allocatable ::  taus(:)
     real(dl), allocatable :: xe_a(:), sdotmu(:), opts(:)
@@ -1818,7 +1818,7 @@
                 associate (Win => RW(RW_i), RedWin => State%Redshift_w(RW_i))
                     if (a > 1d-4) then
                         window = RedWin%Window%Window_f_a(a, winamp)
-                        zwindow=RedWin%Window%zWindow_f_a(a, winamp) !ARF
+                        zwindow=RedWin%Window%zWindow_f_a(a, zwinamp) !ARF
                         if  (RedWin%kind == window_lensing .or.  (RedWin%kind == window_counts .or. RedWin%kind == window_arf )  & ! [CHM] include arf
                             .and. CP%SourceTerms%counts_lensing) then
                             if (State%tau0 - tau > 2) then
