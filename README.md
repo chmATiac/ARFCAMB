@@ -4,7 +4,7 @@ CAMB modified version to include ARF as new observable
 
 A set of routines have been modified to include angular redshift fluctuations (ARF) as a new cosmological observable.
 
-#[HOW TO COMPILE ARFCAMB FOR PYTHON]
+**#[HOW TO COMPILE ARFCAMB FOR PYTHON]**
 
 It should be identical to the procedure to compile standard CAMB. I personally do the following:
 1/ I change directory into the "fortran" folder
@@ -20,7 +20,7 @@ This seems to be caused by some incompatibility between Xcode libraries and thei
 
 In case you encounter further compilation problems, I will only be able to provide (very) limited assistance, but please let me know in either case (chm_AT_iac.es)
 
-#[HOW TO INVOKE THE ARF]
+**#[HOW TO INVOKE THE ARF]**
 
 ARF may be invoked by stating " source_type='arf' " when calling redshift windows (temporaritly only the "SplinedSourceWindow" routine works properly, but "GaussianSourceWindow" will be modified in the future). The ARF will thus correspond to a given redshift window, just as it would be the case for " source_type='counts' " or " source_type='lensing' ". The impact of photometric redshift errors can only be included when using the "SplinedSourceWindow" routine. The RMS of the photo-z errors may be introduced by including the flag "sigma_Errz". The PDF of the photo-z errors is assumed to be Gaussian, but a (truncated) Lorentzian may be used if the flag "i_Lorentz=1" is added as an argument in the "SplinedSourceWindow" function. The Lorentzian is truncated at +/- 4 sigma_Errz, beyond which a Gaussian shape is adopted. Example in python:
 
