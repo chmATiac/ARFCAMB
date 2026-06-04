@@ -2315,7 +2315,7 @@
                                         !!if (Win%kind == window_lensing) &
                                         !!    Delta2 = Delta2 / 2 * ell * (ell + 1)
                                         if (Win%kind == window_lensing) then 
-                                            Delta2 = Delta2 / 2 * ell * (ell + 1)
+                                            Delta2 = Delta2 / 2 * ell * (ell + 1) 
                                             if (CP%SourceTerms%lensing_IA) then !! [CHM] Introducing IA contribution
                                                 Delta2 = Delta2 + CTrans%Delta_p_l_k(3 + Win%mag_index + &
                                                 State%num_redshiftwindows, j, q_ix)
@@ -2405,6 +2405,9 @@
             iCl_scalar(j,C_PhiE) = sqrt(CP%ALens)*  iCl_scalar(j,C_PhiE)*const_fourpi*ell**3*sqrt(ctnorm)
             !Cross-correlation is CTrans%ls%l^3 C_l^{\phi E}
         end if
+        !TMP TMP
+        !print*,'TsT cls lensing, ell, C_ell:',ell,j,iCl_array(1:j,4,4),COUNT(iCl_array(1:j,4,4).eq.0.),COUNT(iCl_array(1:j,4,4).ne.0.)
+        !TMP ____
     end do
 #ifndef __INTEL_COMPILER
     !$OMP END PARALLEL DO

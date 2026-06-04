@@ -1427,7 +1427,7 @@
         associate (W => State%Redshift_W(w_ix))
 
             if (W%kind == window_lensing) then
-                sources(3+w_ix) = -2*phi*W%win_lens(j)
+                sources(3+w_ix) = -2*phi*W%win_lens(j) 
                 ![CHM] We introduce here the extended Non-linear model for Intrinsic Alignment (eNLA model)
                 chi =State%tau0-tau
                 !!jink=minloc(abs(k-k_i),dim=1)
@@ -1438,8 +1438,9 @@
     !                (1/a)**(CP%epsIA)*lum_z(1/a-1.)**(CP%betaIA) * W%wing(j)*clxc / abs(phi/0.6*a) / (k*chi)**2!* adotoa/a
                 !![CHM] We introduce here the IA term with a different dependence on \ell(\ell+1)/2
                 if (CP%SourceTerms%lensing_IA) then 
-                    term4=  -CP%AIA*0.0134*(CP%omch2+CP%ombh2)/(CP%H0/100)/(CP%H0/100) * \
-                    (1/a)**(CP%epsIA)*lum_z(1/a-1.)**(CP%betaIA) / (W%GFmatter2(j))
+                    !term4=  -CP%AIA*0.0134*(CP%omch2+CP%ombh2)/(CP%H0/100)/(CP%H0/100) * \
+                    ! (1/a)**(CP%epsIA)*lum_z(1/a-1.)**(CP%betaIA) / (W%GFmatter2(j)) !! "old NLA model, June 2026"
+                    term4 = -CP%AIA*0.0134*(CP%omch2+CP%ombh2)/(CP%H0/100)/(CP%H0/100) *(1/a)**(CP%epsIA) / (W%GFmatter2(j)) !"New" model, June 2026
                     !term4=W%Window%GetBias(k,a) / (W%GFmatter2(j))
                     term4 = W%wing(j)*(term4 * clxc    + 0.*(W%comoving_density_ev(j) - 3*adotoa)*sigma/k)  
                     sources(3+W%mag_index+State%num_redshiftwindows) = term4 /  W%Fq
@@ -1541,7 +1542,7 @@
                     if (biasEff==0) biasEff=1 ! we avoid NaNs this way
                     counts_density_source= W%wing(j)*(clxc*biasEff * &
                      (1+(biasEff-1.)/biasEff*3*1.686*CP%f_NL*(-3./5.)/(phi*k*k*a) &
-                        *(CP%omch2+CP%ombh2)*100*100/c_light/c_light )  + (W%comoving_density_ev(j) - 3*adotoa)*sigma/k)
+                        *(CP%omch2+CP%ombh2)*100*100/c_light/c_light )  + 1.*(W%comoving_density_ev(j) - 3*adotoa)*sigma/k)
                     !if (abs(a-0.5).lt.0.01) print*,'TST counts:',1/a-1,k,counts_density_source, W%Fq
                    ! chm ______ 
                 else
