@@ -1442,7 +1442,7 @@
                     ! (1/a)**(CP%epsIA)*lum_z(1/a-1.)**(CP%betaIA) / (W%GFmatter2(j)) !! "old NLA model, June 2026"
                     term4 = -CP%AIA*0.0134*(CP%omch2+CP%ombh2)/(CP%H0/100)/(CP%H0/100) *(1/a)**(CP%epsIA) / (W%GFmatter2(j)) !"New" model, June 2026
                     !term4=W%Window%GetBias(k,a) / (W%GFmatter2(j))
-                    term4 = W%wing(j)*(term4 * clxc    + 0.*(W%comoving_density_ev(j) - 3*adotoa)*sigma/k)  
+                    term4 = W%wing(j)*(term4 * clxc    + 1.*(W%comoving_density_ev(j) - 3*adotoa)*sigma/k)  
                     sources(3+W%mag_index+State%num_redshiftwindows) = term4 /  W%Fq
                 endif
 
